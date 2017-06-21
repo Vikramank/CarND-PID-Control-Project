@@ -4,16 +4,19 @@ My project solution to CarND-PID-Control-Project as a part of Self-Driving Car E
 ## Project Goal
 The main goal of this project is to implement PID controller for a self driving car and fine tune the gain parameters.
 
-##CTE 
+## CTE 
 CTE stands for cross track error. It is a measurement of the difference of the desired steering angle and actual steering angle.
 
 ## Proportional gain
+![alt text](https://github.com/Vikramank/CarND-PID-Control-Project/blob/master/pics/p.jpeg)
 The proportional gain acts in a similar fasion to a oscilating pendulum travelling in a sinosuidal motion. Zero displacement is the ideal location we want to achieve. When we deviate far away from it driving force towards zero displacement is high and helps to reach the mean location. But once it reaches the destination, it still has momentum and continue to travel away from the desired location. It keeps oscillating forever. The force is proportional to the displacement. In our case we aim to achieve zero CTE. Hence first term, is proportional to CTE.
 
 ## Differential gain 
+![alt text](https://github.com/Vikramank/CarND-PID-Control-Project/blob/master/pics/pd.jpeg)
 In order to bring the car to a stable location we need to remove/minimise the oscillation terms. Considering the pendulum motion in real life, frictional force that is proportional to the derivative of the displacement, minimises the oscillations and brings the pendulum to rest which is mean position. In self-driving car scenario, we want to achieve the target location by minimising the oscillations gradually. This could be achieved by introducing a derivative term of CTE.  
 
 ## Integral gain 
+![alt text](https://github.com/Vikramank/CarND-PID-Control-Project/blob/master/pics/pid.jpeg)
 In real life situations, the car is not perfect. For instance, the locations of the wheel are not 100% aligned. As a result, this would give rise to a bias term which would not permit us to achieve ideal solution. To negate this effect, we introduce a new term which is an integral of all the previous CTE. By this way, the car will have an idea about the bias and 'P' and 'D' term will work towards reducing the effect of bias term 
 
 ## Selecting the hyperparameters :
