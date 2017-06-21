@@ -1,5 +1,29 @@
 # CarND-Controls-PID
-Self-Driving Car Engineer Nanodegree Program
+My project solution to CarND-PID-Control-Project as a part of Self-Driving Car Engineer Nanodegree Program
+
+## Project Goal
+The main goal of this project is to implement PID controller for a self driving car and fine tune the gain parameters.
+
+##CTE 
+CTE stands for cross track error. It is a measurement of the difference of the desired steering angle and actual steering angle.
+
+## Proportional gain
+The proportional gain acts in a similar fasion to a oscilating pendulum travelling in a sinosuidal motion. Zero displacement is the ideal location we want to achieve. When we deviate far away from it driving force towards zero displacement is high and helps to reach the mean location. But once it reaches the destination, it still has momentum and continue to travel away from the desired location. It keeps oscillating forever. The force is proportional to the displacement. In our case we aim to achieve zero CTE. Hence first term, is proportional to CTE.
+
+## Differential gain 
+In order to bring the car to a stable location we need to remove/minimise the oscillation terms. Considering the pendulum motion in real life, frictional force that is proportional to the derivative of the displacement, minimises the oscillations and brings the pendulum to rest which is mean position. In self-driving car scenario, we want to achieve the target location by minimising the oscillations gradually. This could be achieved by introducing a derivative term of CTE.  
+
+## Integral gain 
+In real life situations, the car is not perfect. For instance, the locations of the wheel are not 100% aligned. As a result, this would give rise to a bias term which would not permit us to achieve ideal solution. To negate this effect, we introduce a new term which is an integral of all the previous CTE. By this way, the car will have an idea about the bias and 'P' and 'D' term will work towards reducing the effect of bias term 
+
+## Selecting the hyperparameters :
+My initial guess after knowing the influence of the terms is that, Differential gain will be dominant and much higher than proportional term in order to suppress the oscillations. The proportional gain will have to be low in order to have minimal oscillations. The integral gain will be very low since it stores all the CTEs. Hence I started out with these values. 
+(0.1,0.0001, 1.0). 
+I started to change 'P' and 'D' gain to till I got a nice smooth ride. I adopted methods similar to Newton-Rapson method, going over extreme values and then decreasing the range. 
+
+After that, I tuned 'I' parameter. 
+
+My final paramters are (0.5,0.005,12.5)
 
 ---
 
