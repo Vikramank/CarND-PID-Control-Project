@@ -17,6 +17,7 @@ In order to bring the car to a stable location we need to remove/minimise the os
 
 ## Integral gain 
 ![alt text](https://github.com/Vikramank/CarND-PID-Control-Project/blob/master/pics/pid.jpeg)
+
 In real life situations, the car is not perfect. For instance, the locations of the wheel are not 100% aligned. As a result, this would give rise to a bias term which would not permit us to achieve ideal solution. To negate this effect, we introduce a new term which is an integral of all the previous CTE. By this way, the car will have an idea about the bias and 'P' and 'D' term will work towards reducing the effect of bias term 
 
 ## Selecting the hyperparameters :
