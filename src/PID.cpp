@@ -6,34 +6,39 @@ PID::PID() {}
 
 PID::~PID() {}
 
-void PID::Init(double Kp, double Ki, double Kd) {
+void PID::Init(double Kp_, double Ki_, double Kd_)
+{
     //initialising coefficiants
-    this->Kp=Kp;
-    this->Ki=Ki;
-    this->Kd=Kd;
+    Kp = Kp_;
+    Ki = Ki_;
+    Kd = Kd_;
     // initialising errors
-    p_error=0.0;
+    p_error = 0.0;
     i_error = 0;
-   	d_error = 0;
+    d_error = 0;
+    // previous cte
+    prev_cte = 0.0;
 }
 
-void PID::UpdateError(double cte) {
-    
-    //proportional error 
-    this->p_error=this->Kp*(cte);
+void PID::UpdateError(double cte)
+{
+
+    //proportional error
+    p_error = (cte);
 
     //differential error
-    double prev_cte=this->p_error; 
-    this->d_error=this->Kd*(p_error-prev_cte);
+    d_error = (p_error - prev_cte);
 
-    //integral error 
-    this->i_error = this->Ki*(this->i_error +cte);
-    //steering= -tau_p*cte-tau_d*cte_d-tau_i*int_cte
+    //integral error
 
+    i_error += cte;
+
+    //updating previous error
+    prev_cte = (cte);
 }
 
-double PID::TotalError() {
-    return -this->Kp*p_error-this->Kd*d_error-this->Ki*i_error;
+double PID::TotalError()
+{
+
+    return -Kp * p_error - Kd * d_error - Ki * i_error;
 }
-
-
